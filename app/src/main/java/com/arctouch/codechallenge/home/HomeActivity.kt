@@ -23,7 +23,7 @@ class HomeActivity : BaseActivity() {
                 val moviesWithGenres = it.results.map { movie ->
                     movie.copy(genres = Cache.genres.filter { movie.genreIds?.contains(it.id) == true })
                 }
-                recyclerView.adapter = HomeAdapter(moviesWithGenres)
+//                recyclerView.adapter = HomeAdapter(moviesWithGenres)
                 progressBar.visibility = View.GONE
             }
     }

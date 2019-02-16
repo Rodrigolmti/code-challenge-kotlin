@@ -1,9 +1,9 @@
 package com.arctouch.codechallenge.home
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.model.Movie
 import com.arctouch.codechallenge.util.MovieImageUrlBuilder
