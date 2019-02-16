@@ -9,17 +9,17 @@ data class GenreResponse(val genres: List<Genre>)
 data class Genre(val id: Int, val name: String)
 
 data class UpcomingMoviesResponse(
-    val page: Int,
+    val page: Long,
     val results: List<Movie>,
-    @Json(name = "total_pages") val totalPages: Int,
-    @Json(name = "total_results") val totalResults: Int
+    @Json(name = "total_pages") val totalPages: Long,
+    @Json(name = "total_results") val totalResults: Long
 )
 
 data class Movie(
     val id: Int,
     val title: String,
     val overview: String?,
-    val genres: List<Genre>?,
+    var genres: String,
     var popularity: String?,
     @Json(name = "genre_ids") val genreIds: List<Int>?,
     @Json(name = "poster_path") var posterPath: String?,
@@ -33,7 +33,7 @@ data class Movie(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        null,
+        parcel.readString(),
         parcel.readString(),
         null,
         parcel.readString(),
@@ -47,6 +47,7 @@ data class Movie(
         parcel.writeInt(id)
         parcel.writeString(title)
         parcel.writeString(overview)
+        parcel.writeString(genres)
         parcel.writeString(popularity)
         parcel.writeString(posterPath)
         parcel.writeString(originalLanguage)
@@ -69,3 +70,5 @@ data class Movie(
         }
     }
 }
+
+

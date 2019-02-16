@@ -12,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 
 class Page {
 
-    var currentPage = 0
-    var lastPage = 1
+    var currentPage: Long = 0
+    var lastPage: Long = 1
 
     fun isLastPage(): Boolean = currentPage == lastPage
     fun nextPage() = currentPage++
@@ -54,7 +54,7 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
         page.nextPage()
 
         compositeDisposable.add(
-            repository.upcomingMovies(page.currentPage)
+            repository.getUpcomingMovies(page.currentPage)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())

@@ -26,5 +26,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
             val args = DetailFragmentArgs.fromBundle(it)
             args.movie?.let { movie -> viewModel.setMovie(movie) }
         }
+        arguments?.clear()
     }
 }
