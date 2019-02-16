@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.databinding.FragmentHomeBinding
 import com.arctouch.codechallenge.ui.base.BaseFragment
-import com.arctouch.codechallenge.util.setUpWithLinearLayout
+import com.arctouch.codechallenge.util.setUpWithGridView
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -25,7 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.movies.observe(this, Observer {
-            mBinding.recyclerView.setUpWithLinearLayout(HomeMovieAdapter(it) { movie ->
+            mBinding.recyclerView.setUpWithGridView(HomeMovieAdapter(it) { movie ->
                 navigate(HomeFragmentDirections.actionGoToDetail(movie))
             })
         })

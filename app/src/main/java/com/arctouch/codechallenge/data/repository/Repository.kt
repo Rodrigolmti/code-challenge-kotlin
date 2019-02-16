@@ -4,6 +4,7 @@ import com.arctouch.codechallenge.data.model.UpcomingMoviesResponse
 import com.arctouch.codechallenge.data.service.TmdbApi
 import com.arctouch.codechallenge.util.*
 import io.reactivex.Single
+import java.util.*
 
 interface IRepository {
 
@@ -12,8 +13,12 @@ interface IRepository {
 
 class Repository(private val tmdbApi: TmdbApi) : IRepository {
 
+    private val defaultLanguage = Locale.getDefault().displayLanguage
+    private val defaultRegion = Locale.getDefault().country
+
     override fun upcomingMovies(page: Int): Single<UpcomingMoviesResponse> {
-        return tmdbApi.upcomingMovies(BASE_KEY, DEFAULT_LANGUAGE, 1, DEFAULT_REGION).map {
+
+        return tmdbApi.upcomingMovies(BASE_KEY, defaultLanguage, 1, defaultRegion).map {
             it.results.map { movie ->
                 movie.backdropPath = BACKDROP_URL + movie.backdropPath
                 movie.posterPath = POSTER_URL + movie.posterPath

@@ -37,12 +37,12 @@ class HomeMovieAdapter(private val movies: List<Movie>, private val onClick: OnC
 
         fun bindData(item: Movie) {
 
-            itemView.titleTextView.text = item.title
+            itemView.textViewTitle.text = item.title
 
             Glide.with(itemView)
                 .load(item.posterPath)
                 .apply(RequestOptions().placeholder(R.drawable.ic_image_placeholder))
-                .into(itemView.posterImageView)
+                .into(itemView.imageViewPoster)
 
             this.item = item
         }
