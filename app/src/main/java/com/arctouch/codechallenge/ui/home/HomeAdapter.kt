@@ -13,7 +13,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class HomeMovieAdapter(private val movies: List<Movie>, private val onClick: OnClick<Movie>) : BaseAdapter() {
+class HomeMovieAdapter(movies: List<Movie>, private val onClick: OnClick<Movie>) : BaseAdapter<Movie>() {
+
+    init {
+        addAll(movies)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(
@@ -23,12 +27,12 @@ class HomeMovieAdapter(private val movies: List<Movie>, private val onClick: OnC
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         val item = (holder as Item)
-        item.bindData(movies[position])
+        item.bindData(data[position])
         item.onClick(onClick)
     }
 
     override fun getItemCount(): Int {
-        return movies.size
+        return data.size
     }
 
     class Item(itemView: View) : BaseViewHolder<Movie>(itemView) {

@@ -18,7 +18,7 @@ class Repository(private val tmdbApi: TmdbApi) : IRepository {
 
     override fun upcomingMovies(page: Int): Single<UpcomingMoviesResponse> {
 
-        return tmdbApi.upcomingMovies(BASE_KEY, defaultLanguage, 1, defaultRegion).map {
+        return tmdbApi.upcomingMovies(BASE_KEY, defaultLanguage, page, defaultRegion).map {
             it.results.map { movie ->
                 movie.backdropPath = BACKDROP_URL + movie.backdropPath
                 movie.posterPath = POSTER_URL + movie.posterPath

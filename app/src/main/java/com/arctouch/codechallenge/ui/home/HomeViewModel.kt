@@ -12,7 +12,11 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
 
-    val movies = MutableLiveData<List<Movie>>()
+    private val movies : MutableList<Movie> = mutableListOf()
+    val moviesLiveData = MutableLiveData<List<Movie>>()
+
+    var currentPage = 0
+    var lastPage = 1
 
     init {
         getUpcomingMovies()
@@ -26,8 +30,14 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
             return
         }
 
+        if (currentPage == lastPage) {
+            return
+        }
+
+        currentPage++
+
         compositeDisposable.add(
-            repository.upcomingMovies(1)
+            repository.upcomingMovies(currentPage)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -43,7 +53,9 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
 
     private fun handleResponse(response: UpcomingMoviesResponse) {
         response.takeIf { it.results.isNotEmpty() }?.let {
-            movies.value = it.results
+            lastPage = response.totalPages
+            movies.addAll(it.results)
+            moviesLiveData.value = movies
             error.set(false)
         } ?: run { error.set(true) }
     }
