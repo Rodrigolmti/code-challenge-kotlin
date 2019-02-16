@@ -3,6 +3,7 @@ package com.arctouch.codechallenge.di
 import com.arctouch.codechallenge.data.repository.IRepository
 import com.arctouch.codechallenge.data.repository.Repository
 import com.arctouch.codechallenge.data.service.TmdbApi
+import com.arctouch.codechallenge.ui.detail.DetailViewModel
 import com.arctouch.codechallenge.ui.home.HomeViewModel
 import com.arctouch.codechallenge.util.SERVER_URL
 import com.arctouch.codechallenge.util.TIMEOUT
@@ -54,4 +55,5 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String)
 
 val viewModelModule: Module = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { DetailViewModel() }
 }

@@ -5,4 +5,8 @@
     <color name="colorPrimaryDark">@android:color/black</color>
     <color name="colorAccent">#484848</color>
 
+    <!-- Backgrounds -->
+    <color name="home_background">@android:color/black</color>
+    <color name="detail_background">@android:color/black</color>
+
 </resources>

@@ -2,6 +2,11 @@
 
     <string name="app_name">Code Challenge</string>
     <string name="movie_and_genres">%s - %s</string>
-    <string name="title_activity_main">MainActivity</string>
+
+    <!-- Detail -->
+    <string name="fragment_detail_open_trailer_error">Ops! Something went wrong!</string>
+    <string name="fragment_detail_open_trailer_release_date">Release Date %s</string>
+    <string name="fragment_detail_open_trailer_release_language">Language %s</string>
+    <string name="fragment_detail_open_trailer_release_popularity">Popularity %s</string>
 
 </resources>

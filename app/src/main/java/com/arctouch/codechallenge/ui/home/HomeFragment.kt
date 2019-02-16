@@ -26,8 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.movies.observe(this, Observer {
             mBinding.recyclerView.setUpWithLinearLayout(HomeMovieAdapter(it) { movie ->
-
-
+                navigate(HomeFragmentDirections.actionGoToDetail(movie))
             })
         })
     }
