@@ -1,4 +1,4 @@
-package com.arctouch.codechallenge.ui.model
+package com.arctouch.codechallenge.data.model
 
 import com.squareup.moshi.Json
 

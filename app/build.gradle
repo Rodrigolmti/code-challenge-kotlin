@@ -23,3 +23,9 @@ android {
 }
 
 apply from: "dependencies.gradle"
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:+'
+    implementation 'androidx.constraintlayout:constraintlayout:+'
+    implementation 'com.google.android.material:material:+'
+}

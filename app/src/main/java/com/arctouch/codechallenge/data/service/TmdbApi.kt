@@ -1,8 +1,8 @@
 package com.arctouch.codechallenge.data.service
 
-import com.arctouch.codechallenge.ui.model.GenreResponse
-import com.arctouch.codechallenge.ui.model.Movie
-import com.arctouch.codechallenge.ui.model.UpcomingMoviesResponse
+import com.arctouch.codechallenge.data.model.GenreResponse
+import com.arctouch.codechallenge.data.model.Movie
+import com.arctouch.codechallenge.data.model.UpcomingMoviesResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
