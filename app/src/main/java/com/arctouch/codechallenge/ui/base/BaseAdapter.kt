@@ -10,6 +10,7 @@ abstract class BaseAdapter<M> : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     protected var data: MutableList<M> = mutableListOf()
 
     fun addAll(list: List<M>) {
+        this.data.clear()
         this.data.addAll(list)
     }
 }

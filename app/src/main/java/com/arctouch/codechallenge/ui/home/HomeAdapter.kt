@@ -3,7 +3,9 @@ package com.arctouch.codechallenge.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.data.model.Movie
 import com.arctouch.codechallenge.ui.base.BaseAdapter
@@ -13,11 +15,33 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class HomeMovieAdapter(movies: List<Movie>, private val onClick: OnClick<Movie>) : BaseAdapter<Movie>() {
+typealias LoadMoreItems = () -> Unit
 
-    init {
-        addAll(movies)
+const val PAGE_SIZE = 20
+
+class HomeMovieAdapterPageHandler(
+    private val layoutManager: GridLayoutManager,
+    private val loadMoreItems: LoadMoreItems
+) : RecyclerView.OnScrollListener() {
+
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        super.onScrolled(recyclerView, dx, dy)
+
+        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+        val visibleItemCount = layoutManager.childCount
+        val totalItemCount = layoutManager.itemCount
+
+        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+            firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE
+        ) {
+            loadMoreItems()
+        }
     }
+}
+
+class HomeMovieAdapter(private val onClick: OnClick<Movie>) : BaseAdapter<Movie>() {
+
+    var homeMovieAdapterPageHandler: HomeMovieAdapterPageHandler? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(
@@ -25,7 +49,12 @@ class HomeMovieAdapter(movies: List<Movie>, private val onClick: OnClick<Movie>)
         )
     }
 
-    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        homeMovieAdapterPageHandler = null
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = (holder as Item)
         item.bindData(data[position])
         item.onClick(onClick)
@@ -33,6 +62,14 @@ class HomeMovieAdapter(movies: List<Movie>, private val onClick: OnClick<Movie>)
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun configAdapterPageHandler(
+        layoutManager: GridLayoutManager,
+        loadMoreItems: LoadMoreItems
+    ): HomeMovieAdapterPageHandler? {
+        homeMovieAdapterPageHandler = HomeMovieAdapterPageHandler(layoutManager, loadMoreItems)
+        return homeMovieAdapterPageHandler
     }
 
     class Item(itemView: View) : BaseViewHolder<Movie>(itemView) {

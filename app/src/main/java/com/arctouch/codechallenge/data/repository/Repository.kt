@@ -13,7 +13,7 @@ interface IRepository {
 
 class Repository(private val tmdbApi: TmdbApi) : IRepository {
 
-    private val defaultLanguage = Locale.getDefault().displayLanguage
+    private val defaultLanguage = Locale.getDefault().language
     private val defaultRegion = Locale.getDefault().country
 
     override fun upcomingMovies(page: Int): Single<UpcomingMoviesResponse> {

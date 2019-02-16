@@ -57,6 +57,8 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
             movies.addAll(it.results)
             moviesLiveData.value = movies
             error.set(false)
-        } ?: run { error.set(true) }
+        } ?: run {
+            error.set(true)
+        }
     }
 }
