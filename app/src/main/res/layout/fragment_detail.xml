@@ -184,6 +184,36 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_movie_language"
                     app:layout_constraintVertical_bias="0.0"/>
 
+            <View
+                    android:id="@+id/divisor"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/darker_gray"
+                    android:elevation="@dimen/field_elevation"
+                    app:layout_constraintLeft_toLeftOf="@+id/cv_info_bg"
+                    app:layout_constraintRight_toRightOf="@+id/cv_info_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movie_popularity"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:elevation="@dimen/field_elevation"
+                    tools:text="Drama"
+                    android:text="@{viewModel.genres}"
+                    android:textColor="@android:color/primary_text_light"
+                    app:layout_constraintBottom_toBottomOf="@+id/cv_info_bg"
+                    app:layout_constraintLeft_toLeftOf="@+id/cv_info_bg"
+                    app:layout_constraintRight_toRightOf="@+id/cv_info_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/divisor"
+                    app:layout_constraintVertical_bias="0.0"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

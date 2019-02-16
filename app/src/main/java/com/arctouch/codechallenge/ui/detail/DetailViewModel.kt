@@ -18,6 +18,8 @@ class DetailViewModel : BaseViewModel() {
     val language = ObservableField<String>()
     val popularity = ObservableField<String>()
 
+    val genres = ObservableField<String>()
+
     fun setMovie(movie: Movie) {
 
         releaseDate.set(
@@ -40,6 +42,7 @@ class DetailViewModel : BaseViewModel() {
         bannerUrl.set(movie.backdropPath)
         posterUrl.set(movie.posterPath)
         overview.set(movie.overview)
+        genres.set(movie.genres)
         title.set(movie.title)
     }
 }
