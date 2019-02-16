@@ -21,7 +21,6 @@ class DetailViewModel : BaseViewModel() {
     val genres = ObservableField<String>()
 
     fun setMovie(movie: Movie) {
-
         releaseDate.set(
             App.instance.getString(R.string.fragment_detail_open_trailer_release_date, movie.releaseDate)
         )
@@ -37,7 +36,6 @@ class DetailViewModel : BaseViewModel() {
                 movie.popularity
             )
         )
-
         voteAverage.set(movie.voteAverage.toString())
         bannerUrl.set(movie.backdropPath)
         posterUrl.set(movie.posterPath)

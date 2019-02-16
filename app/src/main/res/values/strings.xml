@@ -3,6 +3,8 @@
     <string name="app_name">Code Challenge</string>
     <string name="app_generic_no_connection_error">Ops! Check your internet connection, and try again!</string>
 
+    <string name="menu_search">Search</string>
+
     <!-- Detail -->
     <string name="fragment_detail_open_trailer_error">Ops! Something went wrong!</string>
     <string name="fragment_detail_open_trailer_release_date">Release Date %s</string>

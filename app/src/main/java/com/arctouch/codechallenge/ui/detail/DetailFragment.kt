@@ -27,5 +27,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
             args.movie?.let { movie -> viewModel.setMovie(movie) }
         }
         arguments?.clear()
+        arguments = null
     }
 }

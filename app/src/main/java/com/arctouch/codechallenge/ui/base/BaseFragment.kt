@@ -36,6 +36,7 @@ abstract class BaseFragment<BI : ViewDataBinding, VM : BaseViewModel> : Fragment
     override fun onDestroy() {
         super.onDestroy()
         mViewModel.detachView()
+        mBinding.unbind()
     }
 
     protected fun navigate(navDirections: NavDirections) {

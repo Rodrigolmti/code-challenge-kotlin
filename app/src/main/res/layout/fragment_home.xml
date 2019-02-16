@@ -29,13 +29,13 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/margin_start"
+                android:layout_marginEnd="@dimen/margin_end"
                 android:clipToPadding="false"
                 android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.error}"
                 android:paddingBottom="12dp"
                 android:paddingTop="12dp"
-                tools:itemCount="10"
+                tools:itemCount="5"
                 tools:listitem="@layout/movie_item"/>
 
     </RelativeLayout>
