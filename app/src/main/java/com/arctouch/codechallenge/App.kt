@@ -1,6 +1,7 @@
 package com.arctouch.codechallenge
 
 import android.app.Application
+import com.arctouch.codechallenge.di.dataModule
 import com.arctouch.codechallenge.di.networkModule
 import com.arctouch.codechallenge.di.viewModelModule
 import org.koin.android.ext.android.startKoin
@@ -17,7 +18,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin(this, listOf(networkModule, viewModelModule))
+        startKoin(this, listOf(networkModule, dataModule, viewModelModule))
         Timber.plant(Timber.DebugTree())
         instance = this
     }

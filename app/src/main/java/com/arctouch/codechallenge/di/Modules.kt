@@ -1,5 +1,7 @@
 package com.arctouch.codechallenge.di
 
+import com.arctouch.codechallenge.data.repository.IRepository
+import com.arctouch.codechallenge.data.repository.Repository
 import com.arctouch.codechallenge.data.service.TmdbApi
 import com.arctouch.codechallenge.ui.home.HomeViewModel
 import com.arctouch.codechallenge.util.SERVER_URL
@@ -14,6 +16,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+
+//# DATA MODULE
+
+val dataModule: Module = module {
+    single { Repository(get()) as IRepository }
+}
 
 //# NETWORK MODULE
 
@@ -45,5 +53,5 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String)
 //# VIEW MODEL MODULE
 
 val viewModelModule: Module = module {
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
 }
