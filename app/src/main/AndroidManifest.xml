@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="com.arctouch.codechallenge.ui.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".home.HomeActivity" />
+        <activity android:name="com.arctouch.codechallenge.ui.home.HomeActivity" />
 
     </application>
 
