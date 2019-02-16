@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">Code Challenge</string>
-    <string name="movie_and_genres">%s - %s</string>
+    <string name="app_generic_no_connection_error">Ops! Check your internet connection, and try again!</string>
 
     <!-- Detail -->
     <string name="fragment_detail_open_trailer_error">Ops! Something went wrong!</string>
