@@ -10,16 +10,33 @@ import com.arctouch.codechallenge.util.isDeviceHaveNoConnection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
-
-    private val movies : MutableList<Movie> = mutableListOf()
-    val moviesLiveData = MutableLiveData<List<Movie>>()
+class Page {
 
     var currentPage = 0
     var lastPage = 1
 
+    fun isLastPage(): Boolean = currentPage == lastPage
+    fun nextPage() = currentPage++
+    fun resetPages() {
+        currentPage = 0
+        lastPage = 1
+    }
+}
+
+class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
+
+    private val movies: MutableList<Movie> = mutableListOf()
+    val moviesLiveData = MutableLiveData<List<Movie>>()
+
+    private val page = Page()
+
     init {
         getUpcomingMovies()
+    }
+
+    override fun detachView() {
+        super.detachView()
+        page.resetPages()
     }
 
     fun getUpcomingMovies() {
@@ -30,14 +47,14 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
             return
         }
 
-        if (currentPage == lastPage) {
+        if (page.isLastPage()) {
             return
         }
 
-        currentPage++
+        page.nextPage()
 
         compositeDisposable.add(
-            repository.upcomingMovies(currentPage)
+            repository.upcomingMovies(page.currentPage)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -53,7 +70,7 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
 
     private fun handleResponse(response: UpcomingMoviesResponse) {
         response.takeIf { it.results.isNotEmpty() }?.let {
-            lastPage = response.totalPages
+            page.lastPage = response.totalPages
             movies.addAll(it.results)
             moviesLiveData.value = movies
             error.set(false)
