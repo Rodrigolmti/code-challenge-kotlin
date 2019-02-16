@@ -34,11 +34,8 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
 
     private fun handleResponse(response: UpcomingMoviesResponse) {
         response.takeIf { it.results.isNotEmpty() }?.let {
-
-            print(it.page)
-
-        } ?: run {
-
-        }
+            movies.value = it.results
+            error.set(false)
+        } ?: run { error.set(true) }
     }
 }
