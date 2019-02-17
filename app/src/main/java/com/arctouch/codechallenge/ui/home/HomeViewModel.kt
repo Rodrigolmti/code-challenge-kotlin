@@ -10,19 +10,6 @@ import com.arctouch.codechallenge.util.isDeviceHaveNoConnection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class Page {
-
-    var currentPage: Long = 0
-    var lastPage: Long = 1
-
-    fun isLastPage(): Boolean = currentPage == lastPage
-    fun nextPage() = currentPage++
-    fun resetPages() {
-        currentPage = 0
-        lastPage = 1
-    }
-}
-
 class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
 
     private val movies: MutableList<Movie> = mutableListOf()
@@ -82,6 +69,19 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
             error.set(false)
         } ?: run {
             error.set(true)
+        }
+    }
+
+    class Page {
+
+        var currentPage: Long = 0
+        var lastPage: Long = 1
+
+        fun isLastPage(): Boolean = currentPage == lastPage
+        fun nextPage() = currentPage++
+        fun resetPages() {
+            currentPage = 0
+            lastPage = 1
         }
     }
 }

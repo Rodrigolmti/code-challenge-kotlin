@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.util.HOME_FRAGMENT_LABEL
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,9 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.action_search -> {
-
-            }
             android.R.id.home -> {
                 navController.popBackStack()
             }
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         } catch (error: Exception) {
-            error.printStackTrace()
+            Timber.e(error)
         }
     }
 }
