@@ -12,6 +12,7 @@ abstract class BaseAdapter<M> : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
     fun addAll(list: List<M>) {
         this.data.clear()
         this.data.addAll(list)
+        notifyDataSetChanged()
     }
 }
 

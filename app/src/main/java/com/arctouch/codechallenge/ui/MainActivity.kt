@@ -65,7 +65,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                queryString.value = query
+                if (query.isEmpty()) {
+                    queryString.value = query
+                }
                 return true
             }
         })

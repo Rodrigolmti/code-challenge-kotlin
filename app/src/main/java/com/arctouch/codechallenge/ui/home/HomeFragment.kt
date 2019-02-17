@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.databinding.FragmentHomeBinding
 import com.arctouch.codechallenge.ui.MainActivity
 import com.arctouch.codechallenge.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 const val PAGE_SPAN_COUNT = 3
@@ -57,6 +59,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             setLayoutManager(layoutManager)
             adapter = homeMovieAdapter
         }
+        recyclerView.layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
         homeMovieAdapter?.configAdapterPageHandler(layoutManager) {
             viewModel.getUpcomingMovies()
         }?.let { mBinding.recyclerView.addOnScrollListener(it) }

@@ -19,29 +19,9 @@ typealias LoadMoreItems = () -> Unit
 
 const val PAGE_SIZE = 20
 
-class HomeMovieAdapterPageHandler(
-    private val layoutManager: GridLayoutManager,
-    private val loadMoreItems: LoadMoreItems
-) : RecyclerView.OnScrollListener() {
-
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-        super.onScrolled(recyclerView, dx, dy)
-
-        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-        val visibleItemCount = layoutManager.childCount
-        val totalItemCount = layoutManager.itemCount
-
-        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
-            firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE
-        ) {
-            loadMoreItems()
-        }
-    }
-}
-
 class HomeMovieAdapter(private val onClick: OnClick<Movie>) : BaseAdapter<Movie>() {
 
-    var homeMovieAdapterPageHandler: HomeMovieAdapterPageHandler? = null
+    private var homeMovieAdapterPageHandler: HomeMovieAdapterPageHandler? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(
@@ -70,6 +50,26 @@ class HomeMovieAdapter(private val onClick: OnClick<Movie>) : BaseAdapter<Movie>
     ): HomeMovieAdapterPageHandler? {
         homeMovieAdapterPageHandler = HomeMovieAdapterPageHandler(layoutManager, loadMoreItems)
         return homeMovieAdapterPageHandler
+    }
+
+    class HomeMovieAdapterPageHandler(
+        private val layoutManager: GridLayoutManager,
+        private val loadMoreItems: LoadMoreItems
+    ) : RecyclerView.OnScrollListener() {
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+
+            if (visibleItemCount + firstVisibleItemPosition >= totalItemCount &&
+                firstVisibleItemPosition >= 0 && totalItemCount >= PAGE_SIZE
+            ) {
+                loadMoreItems()
+            }
+        }
     }
 
     class Item(itemView: View) : BaseViewHolder<Movie>(itemView) {
