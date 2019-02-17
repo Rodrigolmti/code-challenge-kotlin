@@ -33,7 +33,6 @@ class Repository(private val tmdbApi: TmdbApi) : IRepository {
                         .filter { genre ->
                             movie.genreIds?.contains(genre.id) == true
                         }.map { it.name }
-                        .toList()
                         .joinToString(separator = ", ")
                 }
                 movies
