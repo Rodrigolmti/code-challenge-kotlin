@@ -68,6 +68,12 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
         )
     }
 
+    fun searchMovies(query: String) {
+        moviesLiveData.value = movies.filter {
+            it.title.toLowerCase().contains(query.toLowerCase())
+        }.toList()
+    }
+
     private fun handleResponse(response: UpcomingMoviesResponse) {
         response.takeIf { it.results.isNotEmpty() }?.let {
             page.lastPage = response.totalPages

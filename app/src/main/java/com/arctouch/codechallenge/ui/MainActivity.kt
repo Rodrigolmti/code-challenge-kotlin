@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.arctouch.codechallenge.R
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private var menu: Menu? = null
+
+    val queryString = MutableLiveData<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,12 +60,12 @@ class MainActivity : AppCompatActivity() {
         val searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-
+                queryString.value = query
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-
+                queryString.value = query
                 return true
             }
         })

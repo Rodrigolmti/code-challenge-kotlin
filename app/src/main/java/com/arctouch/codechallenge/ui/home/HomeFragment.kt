@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arctouch.codechallenge.R
 import com.arctouch.codechallenge.databinding.FragmentHomeBinding
+import com.arctouch.codechallenge.ui.MainActivity
 import com.arctouch.codechallenge.ui.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -42,6 +43,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         homeMovieAdapter = HomeMovieAdapter { movie -> navigate(HomeFragmentDirections.actionGoToDetail(movie)) }
         viewModel.moviesLiveData.observe(this, Observer {
             homeMovieAdapter?.addAll(it)
+        })
+        (activity as MainActivity).queryString.observe(this, Observer { query ->
+            viewModel.searchMovies(query)
         })
         configRecyclerView()
     }

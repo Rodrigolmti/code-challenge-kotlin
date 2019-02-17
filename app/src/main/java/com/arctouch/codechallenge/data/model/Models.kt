@@ -18,7 +18,7 @@ data class UpcomingMoviesResponse(
 data class Movie(
     val id: Int,
     val title: String,
-    val overview: String?,
+    val overview: String,
     var genres: String,
     var popularity: String?,
     @Json(name = "genre_ids") val genreIds: List<Int>?,
