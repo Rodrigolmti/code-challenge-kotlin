@@ -25,6 +25,19 @@
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/movie_loading"/>
 
+        <TextView android:layout_width="wrap_content"
+                  android:textAppearance="@style/MovieItemTitle"
+                  android:text="@string/app_generic_no_connection_error"
+                  android:drawableTop="@drawable/ic_error"
+                  android:drawablePadding="10dp"
+                  android:layout_marginStart="@dimen/margin_start"
+                  android:visibility="@{viewModel.error}"
+                  tools:visibility="gone"
+                  android:layout_marginEnd="@dimen/margin_end"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
@@ -32,7 +45,7 @@
                 android:layout_marginStart="@dimen/margin_start"
                 android:layout_marginEnd="@dimen/margin_end"
                 android:clipToPadding="false"
-                android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.error}"
+                android:visibility="@{!viewModel.loading}"
                 android:paddingBottom="12dp"
                 android:paddingTop="12dp"
                 tools:itemCount="5"

@@ -42,7 +42,6 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
     fun getUpcomingMovies() {
 
         if (isDeviceHaveNoConnection()) {
-            showToast(R.string.app_generic_no_connection_error)
             error.set(true)
             return
         }
@@ -62,6 +61,7 @@ class HomeViewModel(private val repository: IRepository) : BaseViewModel() {
                     handleResponse(it)
                     loading.set(false)
                 }, {
+                    showToast(R.string.app_generic_connection_error)
                     loading.set(false)
                     error.set(true)
                 })

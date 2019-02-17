@@ -1,7 +1,10 @@
 <resources>
 
     <string name="app_name">Code Challenge</string>
-    <string name="app_generic_no_connection_error">Ops! Check your internet connection, and try again!</string>
+    <string name="app_generic_connection_error">Ops! At this moment we can\'t process you request!</string>
+    <string name="app_generic_no_connection_error">Ops! Something wrong, check your internet connection, and try
+        again!
+    </string>
 
     <string name="menu_search">Search</string>
 
