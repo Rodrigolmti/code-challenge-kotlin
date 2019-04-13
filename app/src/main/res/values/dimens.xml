@@ -1,0 +1,10 @@
+<resources>
+
+    <dimen name="margin_start">8dp</dimen>
+    <dimen name="margin_end">8dp</dimen>
+    <dimen name="margin_bottom">8dp</dimen>
+    <dimen name="margin_top">8dp</dimen>
+
+    <dimen name="field_elevation">2dp</dimen>
+
+</resources>

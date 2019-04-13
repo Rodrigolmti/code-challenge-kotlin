@@ -1,4 +1,17 @@
 <resources>
+
     <string name="app_name">Code Challenge</string>
-    <string name="movie_and_genres">%s - %s</string>
+    <string name="app_generic_connection_error">Ops! At this moment we can\'t process you request!</string>
+    <string name="app_generic_no_connection_error">Ops! Something wrong, check your internet connection, and try
+        again!
+    </string>
+
+    <string name="menu_search">Search</string>
+
+    <!-- Detail -->
+    <string name="fragment_detail_open_trailer_error">Ops! Something went wrong!</string>
+    <string name="fragment_detail_open_trailer_release_date">Release Date %s</string>
+    <string name="fragment_detail_open_trailer_release_language">Language %s</string>
+    <string name="fragment_detail_open_trailer_release_popularity">Popularity %s</string>
+
 </resources>

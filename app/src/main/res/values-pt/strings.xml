@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">Filmes Populares</string>
+    <string name="app_generic_connection_error">Ops! No momento não conseguimos buscar os dados!</string>
+    <string name="app_generic_no_connection_error">Ops! Certifique-se que seu device tem conexão, e tente novamente!
+    </string>
+
+    <!-- Menu -->
+    <string name="menu_search">Pesquisar</string>
+
+    <!-- Detail -->
+    <string name="fragment_detail_open_trailer_error">Ops! aconteceu algo de errado!</string>
+    <string name="fragment_detail_open_trailer_release_date">Lançamento %s</string>
+    <string name="fragment_detail_open_trailer_release_language">Linguagem %s</string>
+    <string name="fragment_detail_open_trailer_release_popularity">Popularidade %s</string>
+
+</resources>
